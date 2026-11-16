@@ -79,10 +79,10 @@ android {
 
     namespace "com.dblockeok"
     defaultConfig {
-        applicationId "com.dblockeok"
+        applicationId "com.dblockeok.gigatel"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 1
+        versionCode 3
         versionName "1.0"
     }
     signingConfigs {
@@ -110,6 +110,8 @@ android {
 dependencies {
     // The version of react-native is set by the React Native Gradle Plugin
     implementation("com.facebook.react:react-android")
+    // SMS User Consent API for OTP auto-fill (no SMS permission needed)
+    implementation("com.google.android.gms:play-services-auth-api-phone:18.1.0")
 
     if (hermesEnabled.toBoolean()) {
         implementation("com.facebook.react:hermes-android")

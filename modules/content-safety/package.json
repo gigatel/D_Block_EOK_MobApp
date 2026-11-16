@@ -1,0 +1,8 @@
+{
+  "name": "react-native-content-safety",
+  "version": "0.1.0",
+  "private": true,
+  "description": "On-device explicit-content screening (Yahoo open_nsfw, TFLite) for DblockEOK uploads.",
+  "main": "index.js",
+  "license": "UNLICENSED"
+}

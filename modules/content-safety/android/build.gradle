@@ -1,0 +1,42 @@
+// Local library: on-device explicit-content screening (see ../MODEL-LICENSE.md).
+apply plugin: 'com.android.library'
+apply plugin: 'org.jetbrains.kotlin.android'
+
+def safeExtGet(prop, fallback) {
+    rootProject.ext.has(prop) ? rootProject.ext.get(prop) : fallback
+}
+
+android {
+    namespace "com.dblockeok.contentsafety"
+    compileSdk safeExtGet('compileSdkVersion', 37)
+
+    defaultConfig {
+        minSdk safeExtGet('minSdkVersion', 24)
+    }
+
+    sourceSets {
+        main {
+            assets.srcDirs += ['../assets']
+        }
+    }
+
+    // Keep the model uncompressed so it can be memory-mapped from the APK.
+    androidResources {
+        noCompress += 'tflite'
+    }
+
+    lint {
+        abortOnError false
+    }
+}
+
+repositories {
+    google()
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'com.facebook.react:react-android'
+    // LiteRT 1.x Interpreter API (2.x is built with Kotlin 2.4; app uses 2.2) — 16 KB page-aligned native libs, required for Play (targetSdk 35+).
+    implementation 'com.google.ai.edge.litert:litert:1.4.2'
+}
